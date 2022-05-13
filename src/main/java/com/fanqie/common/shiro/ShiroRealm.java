@@ -41,11 +41,12 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        logger.info("进入ShiroRealm 进行权限验证");
+
         //获取用户ID
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         Object obj = principalCollection.getPrimaryPrincipal();
         SysUserEntity sysUserEntity = (SysUserEntity) obj;
+        logger.info("进入ShiroRealm 进行开始读取  {}  权限",sysUserEntity.getUsername());
         Long userId =sysUserEntity.getUserId();
         //这里可以进行授权和处理
         Set<String> rolesSet = new HashSet<>();
@@ -62,7 +63,7 @@ public class ShiroRealm extends AuthorizingRealm {
         //将查到的权限和角色分别传入authorizationInfo中
         authorizationInfo.setStringPermissions(permsSet);
         authorizationInfo.setRoles(rolesSet);
-        logger.info("进入ShiroRealm 权限验证完成");
+        logger.info("进入ShiroRealm 权限读取完成并存入");
         return authorizationInfo;
     }
 

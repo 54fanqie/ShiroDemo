@@ -1,6 +1,7 @@
 package com.fanqie.controller;
 
 import com.fanqie.base.SWJsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ public class TestController {
      * @Author Sans
      * @CreateTime 2019/6/20 9:21
      */
+//    @RequiresPermissions("sys:user:info")
     @RequestMapping("/test")
     public SWJsonResult test(){
         Map<String,Object> result = new HashMap<>();

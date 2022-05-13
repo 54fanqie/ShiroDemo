@@ -29,10 +29,19 @@ public class AuthLoginFilter extends AccessControlFilter {
         Subject subject = SecurityUtils.getSubject();
         // 这里配合APP需求我只需要做登录检测即可
         if (subject != null && subject.isAuthenticated()) {
+            if(subject.hasRole("admin")) {
+                // 有权限，执行相关业务
+                System.out.println("有权限，执行相关业务");
+            } else {
+                // 无权限，给相关提示
+                System.out.println("无权限，给相关提示");
+            }
             // TODO 登录检测通过，这里可以添加一些自定义操作
             System.out.println("执行了AuthLoginFilter   isAccessAllowed");
             return Boolean.TRUE;
         }
+
+
         // 登录检测失败返货False后会进入下面的onAccessDenied()方法
         return Boolean.FALSE;
     }
