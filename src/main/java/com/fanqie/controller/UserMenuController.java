@@ -43,7 +43,7 @@ public class UserMenuController {
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getUserInfoList")
-    @RequiresPermissions("sys:user:info")
+//    @RequiresPermissions("sys:user:info")
     public Map<String,Object> getUserInfoList(){
         Map<String,Object> map = new HashMap<>();
         List<SysUserEntity> sysUserEntityList = sysUserService.list();
@@ -58,7 +58,7 @@ public class UserMenuController {
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getRoleInfoList")
-    @RequiresPermissions("sys/role/info")
+//    @RequiresPermissions("sys/role/info")
     public Map<String,Object> getRoleInfoList(){
         Map<String,Object> map = new HashMap<>();
         List<SysRoleEntity> sysRoleEntityList = sysRoleService.list();
@@ -73,7 +73,7 @@ public class UserMenuController {
      * @Return Map<String,Object>
      */
     @RequestMapping("/getMenuInfoList")
-    @RequiresPermissions("sys:menu:info")
+//    @RequiresPermissions("sys:menu:info")
     public Map<String,Object> getMenuInfoList(){
         Map<String,Object> map = new HashMap<>();
         List<SysMenuEntity> sysMenuEntityList = sysMenuService.list();

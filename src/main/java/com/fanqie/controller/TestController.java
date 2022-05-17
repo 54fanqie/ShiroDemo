@@ -14,7 +14,7 @@ import java.util.Map;
  * @author: fanqie
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/sys")
 public class TestController {
 
     /**

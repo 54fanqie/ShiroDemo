@@ -40,7 +40,7 @@ public class UserRoleController {
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getAdminInfo")
-    @RequiresRoles("ADMIN")
+//    @RequiresRoles("ADMIN")
     public Map<String,Object> getAdminInfo(){
         Map<String,Object> map = new HashMap<>();
         map.put("code",200);
@@ -55,7 +55,7 @@ public class UserRoleController {
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getUserInfo")
-    @RequiresRoles("USER")
+//    @RequiresRoles("USER")
     public Map<String,Object> getUserInfo(){
         Map<String,Object> map = new HashMap<>();
         map.put("code",200);
@@ -71,7 +71,7 @@ public class UserRoleController {
      */
     @RequestMapping("/getRoleInfo")
     @RequiresRoles(value={"ADMIN","USER"},logical = Logical.OR)
-    @RequiresUser
+//    @RequiresUser
     public Map<String,Object> getRoleInfo(){
         Map<String,Object> map = new HashMap<>();
         map.put("code",200);
@@ -86,7 +86,7 @@ public class UserRoleController {
      * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getLogout")
-    @RequiresUser
+//    @RequiresUser
     public Map<String,Object> getLogout(){
         //登出Shiro会帮我们清理掉Session和Cache
         ShiroUtils.logout();

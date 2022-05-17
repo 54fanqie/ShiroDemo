@@ -6,9 +6,11 @@ import com.fanqie.base.SWJsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.apache.shiro.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -17,16 +19,26 @@ import java.util.Map;
 /**
  * 自定义登录过滤器
  *
- * @author zhangkuan
- * @date 2020/01/06
  */
 public class AuthLoginFilter extends AccessControlFilter {
+
+
+
 
 
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
                                       Object mappedValue) throws Exception {
         Subject subject = SecurityUtils.getSubject();
+
+        HttpServletRequest httpServletRequest = WebUtils.toHttp(servletRequest);
+        System.out.println("url "  + httpServletRequest.getRequestURI());
+        System.out.println("host "  + subject.getSession().getHost());
+
+
+
+        boolean isPermitted = subject.isPermitted("sys:user:info");
+        System.out.println(isPermitted);
         // 这里配合APP需求我只需要做登录检测即可
         if (subject != null && subject.isAuthenticated()) {
             if(subject.hasRole("admin")) {

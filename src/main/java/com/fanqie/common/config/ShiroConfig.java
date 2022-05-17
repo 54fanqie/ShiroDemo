@@ -1,6 +1,7 @@
 package com.fanqie.common.config;
 
 import com.fanqie.common.filter.AuthLoginFilter;
+import com.fanqie.common.filter.SysIdentifierFilter;
 import com.fanqie.common.shiro.ShiroRealm;
 import com.fanqie.common.shiro.ShiroSessionManager;
 import com.fanqie.common.util.SHA256Util;
@@ -94,13 +95,14 @@ public class ShiroConfig {
         // 正确的配置是需要我们自己new出来，不能通过@Bean注解初始化，否则将这个Filter交给Spring管理
 //        filters.put("authLogin", new AuthLoginFilter());
         // 定义过滤器名称 【注：map里面key值对于的value要为authc才能使用自定义的过滤器】
-//        filters.put( "perms", new PermsAuthFilter() );
+        filters.put( "sys", new SysIdentifierFilter() );
         filters.put( "authc", new AuthLoginFilter());
         shiroFilterFactoryBean.setFilters(filters);
 
         // 从配置中读取白名单
         Map<String, String> filterChainDefinitionMap = shiroService.loadFilterChainDefinitionMap();
         // 配置登录接口不会被拦截
+        filterChainDefinitionMap.put("/sys/**", "sys");
         filterChainDefinitionMap.put("/userLogin/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
